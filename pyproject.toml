@@ -1,0 +1,20 @@
+[project]
+name = "booklet-generator"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Marten Roots", email = "marten.roots@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "pypdf>=6.10.2",
+    "typer>=0.25.0",
+]
+
+[project.scripts]
+booklet-generator = "booklet_generator.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"

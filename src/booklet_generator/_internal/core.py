@@ -58,8 +58,11 @@ def generate_booklet(
         writer.add_page(merge_page_group(page_parts))
 
     full_dest = destination / f"{output_name}-a3.pdf"
-    logger.info(f"Writing a3 booklet to {full_dest}")
-    writer.write(full_dest)
+    if len(parts.a3) == 0:
+        logger.info(f"Writing a3 booklet to {full_dest}")
+        writer.write(full_dest)
+    else:
+        logger.debug("Skipping empty a3 part")
 
 
 def scale_to_a4(page: PageObject) -> PageObject:

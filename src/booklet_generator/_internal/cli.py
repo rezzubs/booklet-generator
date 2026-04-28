@@ -4,6 +4,8 @@ from typing import Annotated
 
 import typer
 
+from booklet_generator._internal.core import generate_booklet
+
 app = typer.Typer(
     rich_markup_mode=None,
     context_settings={
@@ -29,9 +31,17 @@ def main_command(
             "--destination",
             help="The directory to save the output PDF(s). Uses the source directory by default.",
         ),
+    ],
+    name: Annotated[
+        str | None,
+        typer.Option(
+            "-n",
+            "--name",
+            help="The name of the output PDF(s). Uses the source file name by default.",
+        ),
     ] = None,
 ) -> None:
-    raise NotImplementedError
+    generate_booklet(source, output, name)
 
 
 def main() -> None:

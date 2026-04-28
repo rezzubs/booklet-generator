@@ -15,7 +15,7 @@ A4_WIDTH_PT = 595.276
 A4_HEIGHT_PT = 841.890
 # A3 landscape: 420mm × 297mm  = 1190.551pt × 841.890pt
 A3_WIDTH_PT = A4_WIDTH_PT * 2
-A3_HEIGHT_PT = A4_HEIGHT_PT * 2
+A3_HEIGHT_PT = A4_HEIGHT_PT
 
 
 def generate_booklet(
@@ -118,7 +118,7 @@ def merge_page_group(group: PageGroup) -> PageObject:
 
     a3 = blank_landscape_a3()
     a3.merge_translated_page(group.left, 0, 0)
-    a3.merge_translated_page(group.right, A3_WIDTH_PT, 0)
+    a3.merge_translated_page(group.right, A4_WIDTH_PT, 0)
 
     return a3
 

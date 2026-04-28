@@ -1,8 +1,9 @@
 [project]
 name = "booklet-generator"
 version = "0.1.0"
-description = "Add your description here"
+description = "A simple python script for preparing PDF files for printing in a booklet format."
 readme = "README.md"
+license = "UPL-1.0"
 authors = [
     { name = "Marten Roots", email = "marten.roots@gmail.com" }
 ]
@@ -11,6 +12,9 @@ dependencies = [
     "pypdf>=6.10.2",
     "typer>=0.25.0",
 ]
+
+[project.urls]
+Repository = "https://github.com/rezzubs/booklet-generator"
 
 [project.scripts]
 booklet-generator = "booklet_generator.cli:main"

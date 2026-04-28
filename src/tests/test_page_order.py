@@ -8,7 +8,13 @@ def for_length(length: int, expected: Partitioned_[Group[int | None]]) -> None:
 
 
 def test_page_order():
-    for_length(0, Partitioned_(None, []))
+    try:
+        for_length(0, Partitioned_(None, []))
+    except ValueError:
+        pass
+    else:
+        assert False, "Expected ValueError for empty input"
+
     for_length(1, Partitioned_(Group(1, None), []))
     for_length(2, Partitioned_(Group(1, 2), []))
     for_length(3, Partitioned_(None, [Group(None, 1), Group(2, 3)]))

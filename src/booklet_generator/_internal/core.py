@@ -141,6 +141,9 @@ def partition(pages: list[PageObject]) -> Partitioned:
 
     All other pages are grouped into A3 booklet pages which are meant to be
     flipped on the short edge when printing.
+
+    Raises:
+        ValueError: If the input list is empty.
     """
     return partition_(pages, blank_portrait_a4)
 
@@ -149,7 +152,7 @@ def partition_[T](pages: list[T], create_blank: Callable[[], T]) -> Partitioned[
     length = len(pages)
 
     if length == 0:
-        return Partitioned_(None, [])
+        raise ValueError("Cannot partition an empty list of pages")
 
     if length == 1:
         return Partitioned_(Group(pages[0], create_blank()), [])

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import logging
 from dataclasses import dataclass
 from pathlib import Path
@@ -53,7 +55,7 @@ def generate_booklet(
 
     writer = PdfWriter()
     for page_parts in parts.a3:
-        writer.add_page(page_parts.merge())
+        writer.add_page(merge_page_group(page_parts))
 
     full_dest = destination / f"{output_name}-a3.pdf"
     logger.info(f"Writing a3 booklet to {full_dest}")
@@ -110,14 +112,15 @@ class Group[T]:
 class PageGroup(Group[PageObject]):
     """A group of two A4 pages."""
 
-    def merge(self) -> PageObject:
-        """Merge the two A4 pages into an A3 page on the shared long edge."""
 
-        a3 = blank_landscape_a3()
-        a3.merge_translated_page(self.left, 0, 0)
-        a3.merge_translated_page(self.right, A3_WIDTH_PT, 0)
+def merge_page_group(group: PageGroup) -> PageObject:
+    """Merge the two A4 pages into an A3 page on the shared long edge."""
 
-        return a3
+    a3 = blank_landscape_a3()
+    a3.merge_translated_page(group.left, 0, 0)
+    a3.merge_translated_page(group.right, A3_WIDTH_PT, 0)
+
+    return a3
 
 
 @dataclass(slots=True)

@@ -41,6 +41,12 @@ def main_command(
         ),
     ] = None,
 ) -> None:
+    """Rearranges pages of a PDF into booklet order for double-sided A3 printing.
+
+    Input pages are scaled to A4 and paired onto A3 spreads so the printed
+    sheets can be folded and stapled into a booklet. A separate A4 PDF is
+    produced for the middle sheet if the page count doesn't fit nicely on A3s.
+    """
     generate_booklet(source, output, name)
 
 

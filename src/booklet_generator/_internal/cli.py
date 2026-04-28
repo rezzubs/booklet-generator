@@ -31,7 +31,7 @@ def main_command(
             "--destination",
             help="The directory to save the output PDF(s). Uses the source directory by default.",
         ),
-    ],
+    ] = None,
     name: Annotated[
         str | None,
         typer.Option(
